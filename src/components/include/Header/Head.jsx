@@ -6,18 +6,18 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 const Head = () => {
-    const [age, setAge] = useState('English');
+    const [Language, setLanguage] = useState('english');
     return (
         <>
-            <section className='grid grid-cols-2 bg-sky-700 text-white pt-3  text-sm'>
+            <section className='grid grid-cols-2 bg-sky-700 text-white pt-3  text-base'>
                 <div className='flex'>
                     <div className="flex ml-10 mr-10 mt-4">
-                        <AiFillPhone className="mr-2" />
-                        <label> +88012 3456 7894</label>
+                        <AiFillPhone className="mr-1" />
+                        <label className="leading-3"> +88012 3456 7894</label>
                     </div>
                     <div className="flex mt-4">
-                        <AiFillMail className="mr-2" />
-                        <label> support@ui-lib.com</label>
+                        <AiFillMail className="mr-1" />
+                        <label className="leading-3"> support@ui-lib.com</label>
                     </div>
                 </div>
                 <div className='justify-end flex'>
@@ -29,13 +29,13 @@ const Head = () => {
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={age}
+                                value={Language}
                                 label="Language"
-                                onChange={(e) => setAge(e.target.value)}
+                                onChange={(e) => setLanguage(e.target.value)}
                                 sx={{color:"white"}}
                             >
-                                <MenuItem value={10}>English</MenuItem>
-                                <MenuItem value={20}>Tiếng việt</MenuItem>
+                                <MenuItem value={"english"}>English</MenuItem>
+                                <MenuItem value={"vietnamese"}>Tiếng việt</MenuItem>
                             </Select>
                         </FormControl>
                     </Box>
