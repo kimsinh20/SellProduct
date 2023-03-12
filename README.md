@@ -1,3 +1,12 @@
+react
+react dom
+react icons
+material ui
+tawind css
+
+backend : spring boot
+dadabase : mysql
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
