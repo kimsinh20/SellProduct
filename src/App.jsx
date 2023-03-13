@@ -1,16 +1,17 @@
 
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import Home from './components/page/Home';
-import ProductDetail from './components/Products/ProductDetail';
+import Home from './page/Home';
+import ProductDetail from './page/ProductDetail';
 import { Container } from '@mui/material';
 import { styled } from '@mui/system';
 function App() {
   const Container = styled('div')({
-    padding: 0
+    padding: 0,
+    width: "100%",
   });
   return (
-    <Container maxWidth="false" >
+    <Container  >
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />

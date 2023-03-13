@@ -62,7 +62,7 @@ const Slideshow = () => {
                                 <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-8'>Visit Collections</button>
                             </div> */}
                             <div className='flex justify-end'>
-                                <img src={value.cover}  className="" height={200} alt='' />
+                                <img src={value.cover}  className="right-0"  alt='' />
                             </div>
                         </div>
                     </>

@@ -5,8 +5,17 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { useDispatch,useSelector } from 'react-redux';
+import { setLanguage } from "../../../languageSlice/languageSlice";
+
 const Head = () => {
-    const [Language, setLanguage] = useState('english');
+    const dispatch = useDispatch();
+
+  const handleLanguageChange = (language) => {
+    dispatch(setLanguage(language));
+  };
+  const language = useSelector((state) => state.language.language);
+//   console.log(language)
     return (
         <>
             <section className='grid grid-cols-2 bg-sky-700 text-white pt-3  text-base'>
@@ -29,13 +38,13 @@ const Head = () => {
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={Language}
+                                value={language}
                                 label="Language"
-                                onChange={(e) => setLanguage(e.target.value)}
+                                onChange={(e) => handleLanguageChange(e.target.value)}
                                 sx={{color:"white"}}
                             >
-                                <MenuItem value={"english"}>English</MenuItem>
-                                <MenuItem value={"vietnamese"}>Tiếng việt</MenuItem>
+                                <MenuItem  value={"en"}>English</MenuItem>
+                                <MenuItem  value={"vn"}>Tiếng việt</MenuItem>
                             </Select>
                         </FormControl>
                     </Box>

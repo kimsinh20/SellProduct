@@ -5,7 +5,7 @@ import Slideshow from './Slideshow';
 
 const Content = () => {
     return (
-        <div className='grid grid-cols-5'>
+        <div className='grid grid-cols-5 '>
             <Navbar/>
             <Slide />
             <Slideshow />

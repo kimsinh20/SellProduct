@@ -19,13 +19,15 @@ const ProductsTrending = () => {
                 console.log("Failed to fetch product list: ", error);
             }
         };
-        fetchProductApi();
+        return ()=> {
+            fetchProductApi();
+        }
     }, [size]);
     const clickLoadMore = () => {
         setSize(size + 2)
     }
     return (
-        <div className='m-10'>
+        <div className='m-10 bg-white'>
             <h3 className='mb-2.5 capitalize text-2xl border-b-2 border-emerald-900'>trending</h3>
               {loading ? <ProductSkelaton />  : <ProductTrendingRender products={products}/> }
             <div className='flex justify-center'>

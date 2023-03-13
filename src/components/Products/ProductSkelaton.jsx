@@ -8,8 +8,8 @@ const ProductSkelaton = () => {
             {arrlist.map((e) => (
                 <div className='mb-5'>
                     <Box spacing={1}>
-                        <Skeleton variant="rectangular" width={300} height={200} />
-                        <Skeleton variant="text" width={300} height={30} />
+                        <Skeleton variant="rectangular" width={340} height={190} />
+                        <Skeleton variant="text" width={300} height={60} />
                     </Box>
                 </div>
             )
