@@ -5,6 +5,16 @@ const language = {
    pages :  {vn:"pages",en : "pages"},
    acount :  {vn:"tài khoản",en : "use acount"},
    about :  {vn:"về chúng tôi",en : "about"},
-   category : {vn:"danh mục",en:"category"}
+   category : {vn:"danh mục",en:"category"},
+   Trending : {vn:"xu hướng",en:"Trending"},
+   folow : {vn:"theo dõi chúng tôi",en:"Follow Us"},
+   Resolvecomplaints : {vn:"Giải quyết khiếu nại",en:"Resolve complaints"},
+   shoppingGuide : {vn:"Hướng dẫn mua hàng",en:"Shopping guide"},
+   returnPlicy : {vn:"Chính sách đổi trả",en:"Return policy"},
+   customerCare : {vn:"Chăm sóc khách hàng",en:"Customer care"},
+   loadThePhone : {vn:"Nạp tiền điện thoại",en:"Load the phone"},
+   aboutksshopvn : {vn:"Giới thiệu ksshop.vn",en:"About ksshop.vn"},
+   aboutksshop : {vn:"Giới thiệu ksshop",en:"About ksshop"},
+   activityRegulations : {vn:"Quy chế hoạt động",en:"Activity Regulations"},
 };
 export default language;

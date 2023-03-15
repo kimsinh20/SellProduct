@@ -10,8 +10,8 @@ import language from './../../../language/language';
 const NavDown = () => {
     const lg = useSelector((state) => state.language.language);
     return (
-        <div className='mt-2 pb-2'>
-            <ul className="text-2xl flex justify-center">
+        <div className='mt-2'>
+            <ul className="text-2xl flex justify-center py-3">
                 <li className=''>
                     <Link to='/' className='flex mr-7'><AiTwotoneHome className='mt-1'/>
                     {lg==='en'?language.home.en:language.home.vn}

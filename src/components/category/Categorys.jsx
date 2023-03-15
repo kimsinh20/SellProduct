@@ -1,4 +1,3 @@
-import { Typography } from '@mui/material';
 import React from 'react'
 import CategoryItem from './CategoryItem';
 import { useState, useEffect } from 'react';
@@ -11,13 +10,13 @@ const Categorys = () => {
   const [categories,setCategories] = useState([]);
   const lg = useSelector((state) => state.language.language);
   const [loading,setLoading] = useState(true)
+  const params = { };
   useEffect(() => {
     const fetchProductApi = async () => {
         try {
-            const params = { };
             const response = await CategoryApi.getAll(params);
             setCategories(response);
-            // setLoading(false);
+            setLoading(false);
             // console.log("Fetch category successfully: ", response);
         } catch (error) {
             console.log("Failed to fetch category list: ", error);

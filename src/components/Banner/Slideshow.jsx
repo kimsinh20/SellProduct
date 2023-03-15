@@ -51,21 +51,19 @@ const Slideshow = () => {
         },
     }
     return (
-        <Slider {...settings} className="col-span-3">
+        <Slider {...settings} className="col-span-4 w-full">
             {Sdata.map((value, index) => {
                 return (
-                    <>
                         <div className='relative' key={index}>
                             {/* <div className='absolute top-2 left-48  z-10'>
                                 <h1 className='text-white'>{value.title}</h1>
                                 <p className='text-white '>{value.desc}</p>
                                 <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-8'>Visit Collections</button>
                             </div> */}
-                            <div className='flex justify-end'>
+                            <div className='flex justify-start'>
                                 <img src={value.cover}  className="right-0"  alt='' />
                             </div>
                         </div>
-                    </>
                 )
             })}
         </Slider>

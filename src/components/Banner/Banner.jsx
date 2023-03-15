@@ -1,14 +1,14 @@
 import React from 'react'
 import Navbar from './Navbar'
-import Slide from './Slide';
+import SaleBaner from './SaleBaner';
 import Slideshow from './Slideshow';
 
 const Content = () => {
     return (
-        <div className='grid grid-cols-5 '>
-            <Navbar/>
-            <Slide />
+        <div className='grid grid-cols-6'>
+            {/* <Navbar/> */}
             <Slideshow />
+            <SaleBaner />
         </div>
     )
 }
