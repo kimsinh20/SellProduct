@@ -13,7 +13,7 @@ const CategorySketon = () => {
             {categories.map((e,i)=> (
                 <div className='mt-5 justify-center flex flex-col items-center' key={i}>
                     <Skeleton variant="circular" className='mb-6' width={200} height={200}  />
-                    <Skeleton variant="rectangular" width={340} height={40} />
+                    <Skeleton variant="rectangular" width={300} height={40} />
                 </div>
             ))}
         </div>

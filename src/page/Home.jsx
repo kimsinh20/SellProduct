@@ -5,6 +5,7 @@ import ProductsTrending from '../components/Products/ProductsTrending'
 import Footer from '../components/include/footer/Footer';
 import Marketting from '../components/marketting/Marketting';
 import Categorys from '../components/category/Categorys';
+import Marketting2 from '../components/marketting/Marketting2';
 const Home = () => {
     return (
         <div className=''>
@@ -13,6 +14,7 @@ const Home = () => {
            <ProductsTrending />
            <Marketting />
            <Categorys />
+           <Marketting2 />
            <Footer />
         </div>
     )

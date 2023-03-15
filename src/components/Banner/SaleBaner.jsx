@@ -33,7 +33,9 @@ const SaleBaner = () => {
     <div className='mt-4 col-span-2'>
       <div className='grid grid-cols-3 mb-3'>
         <h1 className='uppercase col-span-2 text-4xl font-bold text-center mr-4 text-orange-600 hover:text-red-400 flex'>
-          F<IoFlash/>ash Sale
+          F
+          <img src='https://frontend.tikicdn.com/_desktop-next/static/img/dealFlashIcon.svg' width={25} className='' alt='no img'></img>
+          ash Sale
         </h1>
         <p className='text-3xl text-red-500 font-bold uppercase'>{time}</p>
       </div>

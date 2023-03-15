@@ -5,6 +5,8 @@ import Header from "../components/include/Header/Header"
 import { Container, Skeleton, Button } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import Footer from '../components/include/footer/Footer';
+import { useSelector } from 'react-redux';
+import language from './../language/language';
 
 const ProductDetail = () => {
   // const id = 1;
@@ -15,6 +17,7 @@ const ProductDetail = () => {
   const [category, setCatogory] = useState({});
   const [brand, setBrand] = useState({});
   const {pid} = useParams();
+  const lg = useSelector((state) => state.language.language);
   useEffect(() => {
     const getID = async () => {
       try {
@@ -60,11 +63,11 @@ const ProductDetail = () => {
             </div>
             <div class="flex space-x-4 mb-5 text-sm font-medium">
               <div class="flex-auto flex justify-around space-x-4 pr-4">
-                <Button variant="contained" size='large' className='w-80' color="success">
-                  Buy now
+                <Button variant="contained" size='large' className='w-80 uppercase' color="success">
+                {lg === 'en' ? language.buyNow.en : language.buyNow.vn}
                 </Button>
-                <Button variant="contained" size='large' className='w-80' color="success">
-                  Add to cart
+                <Button variant="contained" size='large' className='w-80 uppercase' color="success">
+                {lg === 'en' ? language.addCart.en : language.addCart.vn}
                 </Button>
               </div>
               <button class="flex-none flex items-center justify-center w-12 h-12 text-slate-300 border border-slate-200" type="button" aria-label="Like">
@@ -74,7 +77,7 @@ const ProductDetail = () => {
               </button>
             </div>
             <p class="text-sm text-slate-500">
-              Free shipping on all continental US orders.
+                {lg === 'en' ? language.freeShip.en : language.freeShip.vn}
             </p>
           </form>
         </div>

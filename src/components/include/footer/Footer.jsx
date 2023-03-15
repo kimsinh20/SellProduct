@@ -19,7 +19,7 @@ const Footer = () => {
             <p className="mb-2 text-lg">Email: phankimsinh20@gmail.com</p>
             <p className="mb-2 text-lg">Phone: (84) 456-7890</p>
           </div>
-          <div class="w-full ">
+          <div className="w-full ">
             <h4 className="font-bold mb-4 uppercase text-2xl">
               {lg === 'en' ? language.about.en : language.about.vn}
             </h4>
@@ -33,7 +33,7 @@ const Footer = () => {
               {lg === 'en' ? language.activityRegulations.en : language.activityRegulations.vn}
             </p>
           </div>
-          <div class="w-full  ">
+          <div className="w-full  ">
             <h4 className="text-2xl font-bold mb-4 uppercase">
               {lg === 'en' ? language.Resolvecomplaints.en : language.Resolvecomplaints.vn}
             </h4>
