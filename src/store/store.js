@@ -1,9 +1,11 @@
-import language from "../languageSlice/languageSlice";
+import languageReducer from "../languageSlice/languageSlice";
+import userReducer from "../userSlice/UserSlice";
 
 const { configureStore } = require("@reduxjs/toolkit");
 
 const rootReducer = {
-  language: language ,
+  language: languageReducer ,
+  user : userReducer,
 };
 const store = configureStore({
   reducer: rootReducer,

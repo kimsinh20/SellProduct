@@ -2,15 +2,15 @@ import axiosClient from "./axiosClient";
 
 const ProductApi = {
     getAll: (params) => {
-        const url = "/products";
+        const url = "/api/v1/products";
         return axiosClient.get(url, { params });
     },
     getProductTrending : (params) => {
-     const url = "/products/trending";
+     const url = "/api/v1/products/trending";
      return axiosClient.get(url,{params});
     },
     getProductId: (id) => {
-        const url = "/products/" + id;
+        const url = "/api/v1/products/" + id;
         return axiosClient.get(url);
     }
 }

@@ -9,13 +9,13 @@ import Marketting2 from '../components/marketting/Marketting2';
 const Home = () => {
     return (
         <div className=''>
-           <Header />
-           <Banner />
-           <ProductsTrending />
-           <Marketting />
-           <Categorys />
-           <Marketting2 />
-           <Footer />
+            <Header />
+            <Banner />
+            <ProductsTrending />
+            <Marketting />
+            <Categorys />
+            <Marketting2 />
+            <Footer />
         </div>
     )
 }
