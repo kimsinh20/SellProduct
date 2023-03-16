@@ -1,10 +1,5 @@
-react
-react dom
-react icons
-material ui
-tawind css
-
-backend : spring boot
+frontend : react,react dom,react icons,material ui,tawind css,redux tool kit,slick slider,
+backend : spring boot,jpa
 dadabase : mysql
 
 # Getting Started with Create React App
