@@ -36,7 +36,7 @@ const ProductsTrending = () => {
             </h3>
               {loading ? <ProductSkelaton />  : <ProductTrendingRender products={products}/> }
             <div className='flex justify-center'>
-                <button onClick={clickLoadMore} style={{display : size>7 ? "none" : "block" }} id='loadmore' className='btn px-4 py-2 mb-3 font-bold uppercase bg-transparent text-purple-900 border-2 border-purple-900 hover:bg-slate-500 hover:scale-125 transition'>load more</button>
+                <button onClick={clickLoadMore} style={{display : size>8 ? "none" : "block" }} id='loadmore' className='btn px-4 py-2 mb-3 font-bold uppercase bg-transparent text-purple-900 border-2 border-purple-900 hover:bg-slate-500 hover:scale-125 transition'>load more</button>
             </div>
 
         </div>

@@ -7,6 +7,7 @@ const language = {
    about :  {vn:"về chúng tôi",en : "about"},
    category : {vn:"danh mục",en:"category"},
    Trending : {vn:"xu hướng",en:"Trending"},
+   news : {vn:"tin tức",en:"news"},
    folow : {vn:"theo dõi chúng tôi",en:"Follow Us"},
    Resolvecomplaints : {vn:"Giải quyết khiếu nại",en:"Resolve complaints"},
    shoppingGuide : {vn:"Hướng dẫn mua hàng",en:"Shopping guide"},

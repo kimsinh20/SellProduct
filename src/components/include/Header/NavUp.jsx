@@ -1,27 +1,45 @@
-import React from 'react'
 import { IconButton, TextField, Tooltip } from "@mui/material"
-import { BsFillCartCheckFill } from "react-icons/bs"
 import Avatar from '@mui/material/Avatar'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import { styled } from '@mui/system'
+import React from 'react'
+import { BsFillCartCheckFill } from "react-icons/bs"
+import { GiHamburgerMenu } from "react-icons/gi"
+import { GoSignIn } from "react-icons/go"
+import { SiGnuprivacyguard } from "react-icons/si"
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import { styled } from '@mui/system';
-
+import {useDispatch} from "react-redux"
+import { logout } from "../../../slice/userSlice/UserSlice"
 const MyButton = styled(IconButton)({
     padding: '0px',
 });
+const MyMenuItem = styled(MenuItem)({
+    fontSize: "20px"
+});
+
 const NavUp = () => {
+    const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
+        document.body.classList.add('p-0');
     };
     const handleClose = () => {
         setAnchorEl(null);
+        document.body.classList.add('p-0');
     };
+    const loginUser = useSelector((state) => state.user.current);
+    const isLogin = !!loginUser.username;
+
+    const handleLogout = () => {
+        const lg = logout()
+     dispatch(lg)
+    }
     return (
-        <>
+        <React.Fragment>
             <section className='grid grid-cols-3 pt-2 pb-2'>
                 <div className='flex justify-center font-bold '>
                     <Link to={"/"}>
@@ -38,16 +56,23 @@ const NavUp = () => {
                         <BsFillCartCheckFill className='text-4xl leading-6 mr-8' />
                     </Link>
                     <div>
+
                         <Tooltip title="Account settings">
                             <MyButton
                                 onClick={handleClick}
                                 size="small"
-                                sx={{ ml: 2 }}
+                                // sx={{ ml: 2 }}
                                 aria-controls={open ? 'account-menu' : undefined}
                                 aria-haspopup="true"
                                 aria-expanded={open ? 'true' : undefined}
                             >
-                                <Avatar variant='solid' className='' size='sm' />
+                                {!isLogin && (
+                                    <GiHamburgerMenu className='text-4xl text-black' />
+                                )}
+                                {isLogin && (
+                                    <Avatar variant='solid' className='' size='sm' />
+                                )}
+
                             </MyButton>
                         </Tooltip>
                         <Menu
@@ -59,12 +84,12 @@ const NavUp = () => {
                             PaperProps={{
                                 elevation: 0,
                                 sx: {
-                                    overflow: 'visible',
+                                    // overflow: 'visible',
                                     filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
                                     mt: 1.5,
                                     '& .MuiAvatar-root': {
-                                        width: 32,
-                                        height: 32,
+                                        width: 42,
+                                        height: 42,
                                         ml: -0.5,
                                         mr: 1,
                                     },
@@ -85,21 +110,36 @@ const NavUp = () => {
                             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                         >
-                            <Link to={"/auth/signin"}>
-                            <MenuItem onClick={handleClose}>
-                                <Avatar /> login
-                            </MenuItem>
+                            <Link to={"/"}>
+                                <MyMenuItem >
+                                    <Avatar /> {loginUser.username}
+                                </MyMenuItem>
                             </Link>
                             <Link to={"/auth/signup"}>
-                            <MenuItem onClick={handleClose}>
-                                <Avatar /> register
-                            </MenuItem>
+                                <MyMenuItem onClick={handleClose}>
+                                    <SiGnuprivacyguard /> register
+                                </MyMenuItem>
                             </Link>
+                            {!isLogin && (
+                                <Link to={"/auth/signin"}>
+                                    <MyMenuItem onClick={handleClose} >
+                                        <GoSignIn /> login
+                                    </MyMenuItem>
+                                </Link>
+                            )}
+                            {isLogin && (
+                                <Link to={"/auth/signin"} onClick={handleLogout}>
+                                    <MyMenuItem onClick={handleClose} >
+                                        <GoSignIn /> logout
+                                    </MyMenuItem>
+                                </Link>
+
+                            )}
                         </Menu>
                     </div>
                 </div>
             </section>
-        </>
+        </React.Fragment>
     )
 }
 export default NavUp;

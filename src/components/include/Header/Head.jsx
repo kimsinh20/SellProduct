@@ -1,12 +1,12 @@
-import React, { useState } from "react"
-import { AiFillPhone, AiFillMail } from "react-icons/ai"
 import Box from '@mui/material/Box';
+import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { useDispatch,useSelector } from 'react-redux';
-import { setLanguage } from "../../../languageSlice/languageSlice";
+import React from "react";
+import { AiFillMail, AiFillPhone } from "react-icons/ai";
+import { useDispatch, useSelector } from 'react-redux';
+import { setLanguage } from "../../../slice/languageSlice/languageSlice";
 
 const Head = () => {
     const dispatch = useDispatch();

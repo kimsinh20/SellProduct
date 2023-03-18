@@ -11,11 +11,10 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import { React, useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import { Link } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { toast } from 'react-toastify';
-import { register } from './../userSlice/UserSlice';
+import { register } from '../slice/userSlice/UserSlice';
 
 
 const MyInput = styled(FormControl)({
@@ -39,34 +38,59 @@ const Register = () => {
         event.preventDefault();
     };
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const handleCLick = async () => {
-        try {
+    // const navigate = useNavigate();
+    const checkValidForm = () => {
+        let messgage = "";
+        if (username === "" || username.length === 0) {
+            messgage += "username not valid,";
+        }
+        if (name === "" || name.length === 0) {
+            messgage += "name not valid,";
+        }
+        if (password === "" || password.length === 0) {
+            messgage += "password not valid,";
 
-            const value = { name, username, email, password, roles: ["user"] }
-            // const value = {"name":"phankimsinh20@gmail.com","username":"sadsadasd","email":"sinh232@gmail.com","password":"8zavmBfnV7kPDmK","roles":[]}
-            const action = register(value);
-            const resultAction = await dispatch(action);
-            const user = unwrapResult(resultAction);
-            if (user.username = username ) {
-                // const promise = toast.promise(true, {
-                //     loading: 'Loading',
-                //     success: 'Got the data',
-                //     error: 'Error when fetching',
-                //   });
-                // await promise;
-                toast.success("sussces");
-                navigate("/");
-            } else {
-                toast.error("register fall")
+        }
+        const emailRegex = /\w+@\w+[.]\w/;
+        if (email.length === "" || email.length === 0 || !emailRegex.test(email)) {
+            messgage += "email not valid";
+
+        }
+        if (messgage !== "") {
+            toast.error(messgage);
+            return false;
+        }
+        return true;
+    }
+    const handleCLick = async () => {
+        if (checkValidForm()) {
+            try {
+
+                const value = { name, username, email, password, roles: ["user"] }
+                // const value = {"name":"phankimsinh20@gmail.com","username":"sadsadasd","email":"sinh232@gmail.com","password":"8zavmBfnV7kPDmK","roles":[]}
+                const action = register(value);
+                const resultAction = await dispatch(action);
+                const user = unwrapResult(resultAction);
+                if (user.username === username) {
+                    setName("");
+                    setEmail("");
+                    setPassword("");
+                    setUsername("");
+                    toast.success("sussces");
+                    // navigate("/");
+
+                } else {
+                    toast.error("register fall !!!!")
+                }
+
+                // console.log(user);
+                // const response = await UserApi.register(value);
+                // console.log(register);
+                return null;
+            } catch (error) {
+                toast.error("register fall beacause system have to account,please enter")
+                console.log("loi :" + error)
             }
-            
-            // console.log(user);
-            // const response = await UserApi.register(value);
-            // console.log(register);
-            return null;
-        } catch (error) {
-            console.log("loi :" + error)
         }
     }
     return (

@@ -12,7 +12,11 @@ import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 import { styled } from '@mui/system';
 import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { login } from '../slice/userSlice/UserSlice';
+import { useDispatch } from 'react-redux';
+import { unwrapResult } from '@reduxjs/toolkit';
+import { toast, ToastContainer } from 'react-toastify';
 const MyInput = styled(FormControl)({
     margin: '20px 0',
 });
@@ -30,9 +34,43 @@ const Login = () => {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const checkValidForm = () => {
+        if(username.length<5 || password.length<7) {
+            toast.error("valid username or password");
+            return false;
+        }
+        return true;
+    }
+    const handleLogin = async () => {
+        if(checkValidForm()) {
+            try {
 
+                const value = { username, password }
+                // const value = {"name":"phankimsinh20@gmail.com","username":"sadsadasd","email":"sinh232@gmail.com","password":"8zavmBfnV7kPDmK","roles":[]}
+                const action = login(value);
+                const resultAction = await dispatch(action);
+                const respond = unwrapResult(resultAction);
+                if (respond.username === username) {
+                    setPassword("");
+                    setUsername("");
+                    toast.success("susscesfully");
+                    navigate("/");
+                } else {
+                    toast.error("login error");
+                }
+                // console.log(respond);
+                return null;
+            } catch (error) {
+                toast.error("password or username is false,please enter again")
+                // console.log("loi :" + error)
+            }
+        }
+    }
     return (
         <div>
+            <ToastContainer />
             <section className="bg-gray-50 dark:bg-gray-900">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                     <Link to={"/"} className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
@@ -77,7 +115,7 @@ const Login = () => {
                                     />
                                 </MyInput>
                                 <div className='flex justify-around'>
-                                    <MyButon variant="contained">Login</MyButon>
+                                    <MyButon onClick={handleLogin} variant="contained">Login</MyButon>
                                     <MyButon variant="contained">forget password</MyButon>
                                 </div>
                                 <div className='text-center my-4'>
