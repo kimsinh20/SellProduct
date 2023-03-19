@@ -2,10 +2,18 @@
 import axios from "axios";
 import queryString from 'query-string';
 // import { queryString } from 'query-string';
-const data = localStorage.getItem("data")
-const token = JSON.parse(data).token;
-axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-// console.log(token)
+
+
+//header jwt
+let token;
+  const data = localStorage.getItem("data")
+  if(data !== null) {
+    token = JSON.parse(data).token;
+  } else {
+    token = "";
+  }
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+// console.log(data)
 const axiosClient = axios.create({
   baseURL: "http://localhost:8080",
   headers: {

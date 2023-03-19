@@ -1,4 +1,4 @@
-import { IconButton, TextField, Tooltip } from "@mui/material"
+import { Badge, IconButton, TextField, Tooltip } from "@mui/material"
 import Avatar from '@mui/material/Avatar'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
@@ -10,8 +10,9 @@ import { GoSignIn } from "react-icons/go"
 import { SiGnuprivacyguard } from "react-icons/si"
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {useDispatch} from "react-redux"
+import { useDispatch } from "react-redux"
 import { logout } from "../../../slice/userSlice/UserSlice"
+import { selectCountCartItems, selectTotalCartItems } from './../../../slice/cartSlice/Selector';
 const MyButton = styled(IconButton)({
     padding: '0px',
 });
@@ -21,29 +22,41 @@ const MyMenuItem = styled(MenuItem)({
 
 const NavUp = () => {
     const dispatch = useDispatch();
+
     const [anchorEl, setAnchorEl] = React.useState(null);
+
     const open = Boolean(anchorEl);
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
         document.body.classList.add('p-0');
     };
+
     const handleClose = () => {
         setAnchorEl(null);
         document.body.classList.add('p-0');
     };
+
     const loginUser = useSelector((state) => state.user.current);
+
     const isLogin = !!loginUser.username;
 
     const handleLogout = () => {
         const lg = logout()
-     dispatch(lg)
+        dispatch(lg)
     }
+
+    // const countCartitem = 1;
+    const countCartitem = useSelector(selectCountCartItems);
+    const total = useSelector(selectTotalCartItems);
+    console.log(total)
+    // console.log(countCartitem)
     return (
         <React.Fragment>
             <section className='grid grid-cols-3 pt-2 pb-2'>
-                <div className='flex justify-center font-bold '>
+                <div className='flex justify-center font-bold pt-2'>
                     <Link to={"/"}>
-                        <p className='text-4xl'>KS<span className='font-xs text-3xl text-red-600'>SHOP</span> </p>
+                        <p className='text-5xl'>KS<span className='font-xs text-4xl text-red-600'>SHOP</span> </p>
                     </Link>
                 </div>
 
@@ -52,10 +65,16 @@ const NavUp = () => {
                     {/* <FaSearch /> */}
                 </div>
                 <div className='flex justify-center '>
-                    <Link to={"/cart"}>
-                        <BsFillCartCheckFill className='text-4xl leading-6 mr-8' />
+                    <div className="mr-4 leading-6">
+                    <Link to={"/cart"} className="lr-8">
+                        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                            <Badge badgeContent={countCartitem} color="error">
+                                <BsFillCartCheckFill className='text-4xl' />
+                            </Badge>
+                        </IconButton>
                     </Link>
-                    <div>
+                    </div>
+                    <div className="ml-6 pt-2">
 
                         <Tooltip title="Account settings">
                             <MyButton

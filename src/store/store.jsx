@@ -1,5 +1,6 @@
 import languageReducer from "../slice/languageSlice/languageSlice";
 import userReducer from "../slice/userSlice/UserSlice";
+import cartReducer from "../slice/cartSlice/cartSlice"
 import {  persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import * as rp from 'redux-persist'
@@ -14,6 +15,7 @@ const persistConfig = {
 const reducer = combineReducers({
   language: languageReducer ,
   user : userReducer,
+  cart : cartReducer,
 });
 const persistedReducer = persistReducer(persistConfig, reducer);
 // const rootReducer = {

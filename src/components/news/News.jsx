@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import language from '../../language/language';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import NewsApi from '../../api/NewsApi';
-import NewsItem from './NewsItem';
 import { Link } from 'react-router-dom';
-import { Button } from '@mui/material';
+import NewsApi from '../../api/NewsApi';
+import language from '../../language/language';
+import NewsItem from './NewsItem';
 
 const News = () => {
   const [news, setNews] = useState([])
@@ -15,7 +14,7 @@ const News = () => {
         const params = {};
         const response = await NewsApi.get4News(params);
         setNews(response);
-        console.log("Fetch news successfully: ", response);
+        // console.log("Fetch news successfully: ", response);
       } catch (error) {
         console.log("Failed to fetch news list: ", error);
       }
@@ -28,12 +27,12 @@ const News = () => {
         {lg === 'en' ? language.news.en : language.news.vn}
       </h3>
       <div className='grid xl:grid-cols-4 sm:grid-cols-2 mt-4'>
-      {news.map((e, i) => (<NewsItem key={i} newsitem={e} />))}
+        {news.map((e, i) => (<NewsItem key={i} newsitem={e} />))}
       </div>
       <div className='mt-8 text-center'>
-      <Link to={"/news"}>
-      <button  id='loadmore' className='btn px-4 py-2 mb-3 font-bold uppercase bg-transparent text-purple-900 border-2 border-purple-900 hover:bg-slate-500 hover:scale-125 transition'>load more</button>
-      </Link>
+        <Link to={"/news"}>
+          <button id='loadmore' className='btn px-4 py-2 mb-3 font-bold uppercase bg-transparent text-purple-900 border-2 border-purple-900 hover:bg-slate-500 hover:scale-125 transition'>load more</button>
+        </Link>
       </div>
     </div>
   )

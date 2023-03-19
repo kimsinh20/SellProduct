@@ -17,6 +17,7 @@ import { login } from '../slice/userSlice/UserSlice';
 import { useDispatch } from 'react-redux';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { toast, ToastContainer } from 'react-toastify';
+import { axios } from 'axios';
 const MyInput = styled(FormControl)({
     margin: '20px 0',
 });
@@ -37,14 +38,14 @@ const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const checkValidForm = () => {
-        if(username.length<5 || password.length<7) {
+        if (username.length < 5 || password.length < 7) {
             toast.error("valid username or password");
             return false;
         }
         return true;
     }
     const handleLogin = async () => {
-        if(checkValidForm()) {
+        if (checkValidForm()) {
             try {
 
                 const value = { username, password }
@@ -53,6 +54,9 @@ const Login = () => {
                 const resultAction = await dispatch(action);
                 const respond = unwrapResult(resultAction);
                 if (respond.username === username) {
+                    // const token = respond.token;
+                    // console.log(token)
+                    // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
                     setPassword("");
                     setUsername("");
                     toast.success("susscesfully");
