@@ -13,33 +13,36 @@ const MyMenuTextField = styled(TextField)({
 const CartItem = ({ item }) => {
 
     const [quantity, setquantity] = useState(item.quantity);
-    const [total,setTotal] = useState(item.quantity*item.product.price)
+    const [total, setTotal] = useState(item.quantity * item.product.price)
 
     const dispatch = useDispatch();
 
     const handleMinus = (e) => {
         e.preventDefault();
         setquantity(quantity <= 1 ? 1 : quantity - 1);
-        setTotal((quantity <= 1 ? 1 : quantity - 1)*item.product.price);
+        setTotal((quantity <= 1 ? 1 : quantity - 1) * item.product.price);
         const action = setQuantityCart({
             id: item.id,
-            quantity: quantity
+            quantity: (quantity <= 1 ? 1 : quantity - 1)
         });
         dispatch(action);
     }
     const handlePlus = (e) => {
         e.preventDefault();
         setquantity(quantity + 1);
-        setTotal((quantity+1)*item.product.price);
+        setTotal((quantity + 1) * item.product.price);
         const action = setQuantityCart({
             id: item.id,
-            quantity: quantity
+            quantity: quantity + 1
         });
         dispatch(action);
     }
     const handleDeteteItem = () => {
         const action = deleteItemToCart(item.id);
         dispatch(action);
+    }
+    const formatVnd = (x) => {
+        return x.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
     }
     return (
         <>
@@ -49,7 +52,7 @@ const CartItem = ({ item }) => {
                     <p className='leading-8 ml-3'>{item.product.name}</p>
                 </span>
                 <span>
-                    {item.product.price}
+                    {formatVnd(item.product.price)}
                 </span>
                 <span className='flex'>
                     <AiOutlineMinusCircle className='text-xl mt-2' onClick={(e) => handleMinus(e)} />
@@ -70,7 +73,7 @@ const CartItem = ({ item }) => {
                     <AiOutlinePlusCircle className='text-xl mt-2' onClick={(e) => handlePlus(e)} />
                 </span>
                 <span className='text-red-600'>
-                    {total}
+                    {formatVnd(total)}
                 </span>
                 <span>
                     <AiOutlineDelete onClick={handleDeteteItem} />

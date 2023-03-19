@@ -1,10 +1,10 @@
-import { Badge, IconButton, TextField, Tooltip } from "@mui/material"
+import { Badge, Button, IconButton, Paper, TextField, Tooltip } from "@mui/material"
 import Avatar from '@mui/material/Avatar'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { styled } from '@mui/system'
 import React from 'react'
-import { BsFillCartCheckFill } from "react-icons/bs"
+import { BsFillCartCheckFill, BsFillBackspaceFill } from "react-icons/bs"
 import { GiHamburgerMenu } from "react-icons/gi"
 import { GoSignIn } from "react-icons/go"
 import { SiGnuprivacyguard } from "react-icons/si"
@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch } from "react-redux"
 import { logout } from "../../../slice/userSlice/UserSlice"
 import { selectCountCartItems, selectTotalCartItems } from './../../../slice/cartSlice/Selector';
+import { hideMiniCart } from "../../../slice/cartSlice/cartSlice"
 const MyButton = styled(IconButton)({
     padding: '0px',
 });
@@ -49,7 +50,12 @@ const NavUp = () => {
     // const countCartitem = 1;
     const countCartitem = useSelector(selectCountCartItems);
     const total = useSelector(selectTotalCartItems);
-    console.log(total)
+    const showMiniCart = useSelector((state) => state.cart.showMiniCart)
+    const handleExitMiniCart = () => {
+        const action = hideMiniCart();
+        dispatch(action);
+    }
+    // console.log(total)
     // console.log(countCartitem)
     return (
         <React.Fragment>
@@ -65,14 +71,23 @@ const NavUp = () => {
                     {/* <FaSearch /> */}
                 </div>
                 <div className='flex justify-center '>
-                    <div className="mr-4 leading-6">
-                    <Link to={"/cart"} className="lr-8">
-                        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                            <Badge badgeContent={countCartitem} color="error">
-                                <BsFillCartCheckFill className='text-4xl' />
-                            </Badge>
-                        </IconButton>
-                    </Link>
+                    <div className="mr-6 leading-6 relative">
+                        <Link to={"/cart"} className="lr-8">
+                            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                                <Badge badgeContent={countCartitem} color="error">
+                                    <BsFillCartCheckFill className='text-4xl' />
+                                </Badge>
+                            </IconButton>
+                        </Link>
+                        {showMiniCart && (
+                            <Paper className="absolute w-56 mt-5 p-4 rounded-sm flex flex-col items-center">
+                                <BsFillBackspaceFill className="absolute right-2 text-3xl" onClick={handleExitMiniCart} />
+                                <p className="text-xl my-2">add cart susscesfully</p>
+                                <Link to={"/cart"}>
+                                    <button onClick={handleExitMiniCart} className="bg-red-500 rounded-md px-2 py-2 text-white text-center w-28">view cart</button>
+                                </Link>
+                            </Paper>
+                        )}
                     </div>
                     <div className="ml-6 pt-2">
 

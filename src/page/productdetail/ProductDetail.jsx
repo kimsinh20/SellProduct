@@ -10,7 +10,7 @@ import Header from "../../components/include/Header/Header";
 import language from '../../language/language';
 import ProductDetailMenu from './ProductDetailMenu';
 import { useDispatch } from 'react-redux';
-import { addToCart } from '../../slice/cartSlice/cartSlice';
+import { addToCart,showMiniCart } from '../../slice/cartSlice/cartSlice';
 const MyMenuTextField = styled(TextField)({
   maxWidth: "100px",
   margin: "0 8px"
@@ -60,13 +60,15 @@ const ProductDetail = () => {
     setQuantityField(quantityField + 1);
   }
   const handleAddToCart = () => {
-    const action = addToCart({
+    const action1 = addToCart({
       id: pid,
       product,
       quantity:quantityField
     })
-    console.log(action)
-    dispatch(action);
+    dispatch(action1);
+    const acction2 = showMiniCart();
+    dispatch(acction2);
+
   }
   return (
     <>

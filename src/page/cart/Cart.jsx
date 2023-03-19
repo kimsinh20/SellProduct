@@ -12,6 +12,9 @@ const Cart = () => {
     const countItemToCart = useSelector(selectCountCartItems);
     const dispatch =  useDispatch();
     const actionDeleteCart = deleteCart(); 
+    const formatVnd = (x) => {
+        return x.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+    }
     return (
         <div className='bg-slate-200'>
             <Header />
@@ -21,7 +24,7 @@ const Cart = () => {
             <div className='grid xl:grid-cols-4 mx-4'>
                 <div className='xl:col-span-3'>
                     <div className=''>
-                        <div className='grid grid-cols-6 py-2 mt-2 bg-white rounded-tl-md rounded-tr-md'>
+                        <div className='grid grid-cols-6 text-2xl py-2 mt-2 bg-white rounded-tl-md rounded-tr-md'>
                             <span className='col-span-2'>
                                 all ( {countItemToCart} ) product
                             </span>
@@ -41,7 +44,7 @@ const Cart = () => {
                 </div>
                 <div className='xl:col-span-1 ml-3 bg-white'>
                     <label>total</label>
-                    <p>{totalCart}</p>
+                    <p className='text-2xl text-red-500'>{formatVnd(totalCart)}</p>
                 </div>
             </div>
         </div>
