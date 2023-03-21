@@ -9,8 +9,9 @@ let token;
   const data = localStorage.getItem("data")
   if(data !== null) {
     token = JSON.parse(data).token;
+    // console.log(token)
   } else {
-    token = "";
+    token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzaW5oMjAwMiIsImlhdCI6MTY3OTIyMjU3NiwiZXhwIjoxNjc5MzA4OTc2fQ.Krl3h-NW3P8hFsTKqR-5vu7FqT9o1xhbIGXqb1xrL7M";
   }
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 // console.log(data)

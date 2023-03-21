@@ -48,7 +48,7 @@ const CartItem = ({ item }) => {
         <>
             <div className='grid grid-cols-6 py-3 mt-3'>
                 <span className='col-span-2 flex'>
-                    <img src={item.product.imgUrl} width={80} alt='img'></img>
+                    <img src={item.product.imageUrl} width={80} alt='img'></img>
                     <p className='leading-8 ml-3'>{item.product.name}</p>
                 </span>
                 <span>

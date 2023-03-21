@@ -6,18 +6,20 @@ import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import TextField from '@mui/material/TextField';
 import { React, useState } from 'react';
+
+import axios from "axios";
 // import Visibility from '@mui/icons-material/Visibility';
 // import AiFillEyeInvisible from '@mui/icons-material/VisibilityOff';
-import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
-import { styled } from '@mui/system';
 import { Button } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
-import { login } from '../slice/userSlice/UserSlice';
-import { useDispatch } from 'react-redux';
+import { styled } from '@mui/system';
 import { unwrapResult } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
-import { axios } from 'axios';
+import { login } from '../slice/userSlice/UserSlice';
+
 const MyInput = styled(FormControl)({
     margin: '20px 0',
 });
@@ -57,6 +59,7 @@ const Login = () => {
                     // const token = respond.token;
                     // console.log(token)
                     // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+                    // axios.defaults.headers.common['Authorization'] = `Bearer `;
                     setPassword("");
                     setUsername("");
                     toast.success("susscesfully");

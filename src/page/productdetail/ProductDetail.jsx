@@ -10,7 +10,7 @@ import Header from "../../components/include/Header/Header";
 import language from '../../language/language';
 import ProductDetailMenu from './ProductDetailMenu';
 import { useDispatch } from 'react-redux';
-import { addToCart,showMiniCart } from '../../slice/cartSlice/cartSlice';
+import { addToCart, showMiniCart } from '../../slice/cartSlice/cartSlice';
 const MyMenuTextField = styled(TextField)({
   maxWidth: "100px",
   margin: "0 8px"
@@ -19,14 +19,14 @@ const ProductDetail = () => {
   // const id = 1;
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
-  const [imgUrl, setImgUrl] = useState('');
+  const [imageUrl, setImgUrl] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCatogory] = useState({});
   const [brand, setBrand] = useState({});
   const [quantityField, setQuantityField] = useState(1);
 
   const { pid } = useParams();
-  const product = { pid, name, price, imgUrl, description, category, brand }
+  const product = { pid, name, price, imageUrl, description, category, brand }
   const lg = useSelector((state) => state.language.language);
   const dispatch = useDispatch();
 
@@ -39,7 +39,7 @@ const ProductDetail = () => {
           setImgUrl(response.imageUrl);
           setPrice(response.price);
           setCatogory(response.category);
-          setBrand(response.Brand);
+          setBrand(response.brand);
           // console.log(response)
         })
       } catch (error) {
@@ -63,20 +63,20 @@ const ProductDetail = () => {
     const action1 = addToCart({
       id: pid,
       product,
-      quantity:quantityField
+      quantity: quantityField
     })
     dispatch(action1);
     const acction2 = showMiniCart();
     dispatch(acction2);
-
   }
+
   return (
     <>
       <Header />
       <Container className='mt-4'>
         <div className="flex font-serif">
           <div className="flex-none w-52 relative">
-            <img src={imgUrl} alt="" className="absolute inset-0 w-full h-full object-cover rounded-lg" loading="lazy" />
+            <img src={imageUrl} alt="" className="absolute inset-0 w-full h-full object-cover rounded-lg" loading="lazy" />
           </div>
           <form className="flex-auto p-6">
             <div className="flex flex-wrap items-baseline">
@@ -134,7 +134,7 @@ const ProductDetail = () => {
             </p>
           </form>
         </div>
-        <ProductDetailMenu />
+        <ProductDetailMenu  product={product}/>
       </Container>
       <Footer />
     </>
