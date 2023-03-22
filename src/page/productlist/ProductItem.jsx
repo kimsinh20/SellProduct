@@ -6,7 +6,7 @@ import { addToCart, showMiniCart } from '../../slice/cartSlice/cartSlice';
 
 const ProductTrendingItem = ({ card }) => {
   const { id, name, price, imageUrl } = card;
-  const link = `api/v1/products/${id}`;
+  const link = `${id}`;
   const dispatch = useDispatch();
   const formatVnd = (x) => {
     return x.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
