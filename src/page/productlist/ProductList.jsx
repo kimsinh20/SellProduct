@@ -17,7 +17,6 @@ const ProductList = () => {
     const [filter, setFilter] = useState({
         page: 1,
         size: size,
-        keyword : ""
     })
     const lg = useSelector((state) => state.language.language);
 
@@ -43,38 +42,45 @@ const ProductList = () => {
             }
         })();
     }, [filter]);
-    const handleFilterChange = () => {
-        // setFilter((prevFilter) => ({
-        //     ...prevFilter,
-        //     ...newFilters
-        // }))
-        setFilter(prevFilter => ({
+    const handleFilterChange = (newFilters) => {
+        setFilter((prevFilter) => ({
             ...prevFilter,
-            keyword : "think"
+            ...newFilters
         }))
+        // setFilter(prevFilter => ({
+        //     ...prevFilter,
+        //     keyword : "think"
+        // }))
     }
     return (
         <div>
             <Header />
-            <button onClick={handleFilterChange}>click</button>
+            {/* <button onClick={handleFilterChange}>click</button> */}
             <div className='grid grid-cols-6 mt-8'>
+                {loading?(<h1 className='text-center text-3xl'>not data</h1>) :( 
                 <div className='col-span-1 flex flex-col items-center'>
-                    <ProductFilter 
-                    filter={filter} 
-                    // onChange={handleFilterChange} 
+                    <ProductFilter
+                        filter={filter}
+                        onChange={handleFilterChange}
                     />
-                </div>
+                </div>)
+                }
                 <div className='col-span-5'>
-                    {loading ? <ProductSkelaton products={products} /> : <ProductTrendingRender products={products} />}
-                    <div className='flex justify-center mb-4'>
-                        <Pagination
-                            color='primary'
-                            count={totalPage}
-                            page={filter.page}
-                            onChange={handlePagination}
-                        >
-                        </Pagination>
-                    </div>
+                    {loading ? <ProductSkelaton products={products} />
+                        : (
+                            <>
+                                <ProductTrendingRender products={products} />
+                                <div className='flex justify-center mb-4'>
+                                    <Pagination
+                                        color='primary'
+                                        count={totalPage}
+                                        page={filter.page}
+                                        onChange={handlePagination}
+                                    >
+                                    </Pagination>
+                                </div>
+                            </>
+                        )}
                 </div>
             </div>
             <Footer />

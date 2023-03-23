@@ -2,6 +2,7 @@ import { Checkbox, FormControlLabel, FormGroup } from '@mui/material';
 import { default as React, useEffect, useState } from 'react';
 import { AiFillFilter } from "react-icons/ai";
 import CategoryApi from './../../api/CategoryApi';
+import { PropTypes } from 'prop-types';
 
 const CategoryFilter = ({ onChange }) => {
     const [brands, setBrand] = useState([]);
@@ -16,6 +17,7 @@ const CategoryFilter = ({ onChange }) => {
             }
         })();
     }, []);
+    
     const handleClick = (e) => {
         if (onChange) {
             onChange(e.categoryName)
@@ -32,7 +34,7 @@ const CategoryFilter = ({ onChange }) => {
                 <div>
                     <FormGroup>
                         {brands.map((e) => (
-                            <FormControlLabel key={e.categoryId} onClick={handleClick(e)} control={<Checkbox color='success' />} label={e.categoryName} />
+                            <FormControlLabel key={e.categoryId} onChange={()=>handleClick(e)} control={<Checkbox color='success' />} label={e.categoryName} />
                         ))}
                     </FormGroup>
                 </div>
@@ -41,4 +43,7 @@ const CategoryFilter = ({ onChange }) => {
     )
 }
 
+CategoryFilter.prototype = {
+    onChange : PropTypes.func
+}
 export default CategoryFilter

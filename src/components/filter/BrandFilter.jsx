@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { AiFillFilter } from "react-icons/ai";
 import CategoryApi from './../../api/CategoryApi';
 import BrandApi from './../../api/BrandApi';
-const BrandFilter = () => {
+import { PropTypes } from 'prop-types';
+
+const BrandFilter = ({onChange}) => {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
         const fetchProductApi = async () => {
@@ -19,6 +21,11 @@ const BrandFilter = () => {
             fetchProductApi();
         }
     }, [])
+    const handleClick = (e) => {
+        if (onChange) {
+            onChange(e.brandName)
+        }
+    }
     return (
         <>
             <div>
@@ -26,7 +33,7 @@ const BrandFilter = () => {
                 <div>
                     <FormGroup>
                         {categories.map((e) => (
-                            <FormControlLabel key={e.brandId} control={<Checkbox color='success' />} label={e.brandName} />
+                            <FormControlLabel key={e.brandId} onChange={()=>handleClick(e)} control={<Checkbox color='success' />} label={e.brandName} />
                         ))}
                     </FormGroup>
                 </div>
@@ -34,5 +41,7 @@ const BrandFilter = () => {
         </>
     )
 }
-
+BrandFilter.prototype = {
+    onChange : PropTypes.func
+}
 export default BrandFilter
