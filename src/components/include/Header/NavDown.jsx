@@ -19,7 +19,7 @@ const NavDown = () => {
                 </li>
                 <li className=''>
                     <Link to='/products' className='flex mr-7'><MdContactPage className='mt-1'/>
-                    {lg==='en'?language.pages.en:language.pages.vn}
+                    {lg==='en'?language.products.en:language.products.vn}
                     </Link>
                 </li> 
                 <li>

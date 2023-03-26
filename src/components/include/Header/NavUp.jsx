@@ -1,19 +1,19 @@
-import { Badge, Button, IconButton, Paper, TextField, Tooltip } from "@mui/material"
+import { Badge, IconButton, Paper, Tooltip } from "@mui/material"
 import Avatar from '@mui/material/Avatar'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { styled } from '@mui/system'
 import React from 'react'
-import { BsFillCartCheckFill, BsFillBackspaceFill } from "react-icons/bs"
+import { BsFillBackspaceFill, BsFillCartCheckFill } from "react-icons/bs"
 import { GiHamburgerMenu } from "react-icons/gi"
 import { GoSignIn } from "react-icons/go"
 import { SiGnuprivacyguard } from "react-icons/si"
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { useDispatch } from "react-redux"
-import { logout } from "../../../slice/userSlice/UserSlice"
-import { selectCountCartItems, selectTotalCartItems } from './../../../slice/cartSlice/Selector';
 import { hideMiniCart } from "../../../slice/cartSlice/cartSlice"
+import { logout } from "../../../slice/userSlice/UserSlice"
+import { selectCountCartItems, selectTotalCartItems } from './../../../slice/cartSlice/Selector'
+import NavUpSearch from "./NavUpSearch"
 const MyButton = styled(IconButton)({
     padding: '0px',
 });
@@ -49,7 +49,7 @@ const NavUp = () => {
 
     // const countCartitem = 1;
     const countCartitem = useSelector(selectCountCartItems);
-    const total = useSelector(selectTotalCartItems);
+    //const total = useSelector(selectTotalCartItems);
     const showMiniCart = useSelector((state) => state.cart.showMiniCart)
     const handleExitMiniCart = () => {
         const action = hideMiniCart();
@@ -66,10 +66,8 @@ const NavUp = () => {
                     </Link>
                 </div>
 
-                <div className='text-center flex'>
-                    <TextField fullWidth label="key word" id="fullWidth" />
-                    {/* <FaSearch /> */}
-                </div>
+                <NavUpSearch/>
+                
                 <div className='flex justify-center '>
                     <div className="mr-6 leading-6 relative">
                         <Link to={"/cart"} className="lr-8">

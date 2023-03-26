@@ -21,11 +21,20 @@ const ProductFilter = ({filter,onChange}) => {
         }
         onChange(newFilter);
     }
+    const handlePriceChange = (min,max) => {
+        if(!onChange) return;
+        const newFilter = {
+            ...filter,
+            min : min,
+            max : max
+        }
+        onChange(newFilter);
+    }
     return (
         <>
             <CategoryFilter onChange={handleCategoryChange} />
             <BrandFilter onChange={handleBrandChange} />
-            <PriceFilter />
+            <PriceFilter onChange={handlePriceChange} />
         </>
     )
 }

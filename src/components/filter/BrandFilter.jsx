@@ -6,12 +6,12 @@ import BrandApi from './../../api/BrandApi';
 import { PropTypes } from 'prop-types';
 
 const BrandFilter = ({onChange}) => {
-    const [categories, setCategories] = useState([]);
+    const [brands, setBrand] = useState([]);
     useEffect(() => {
         const fetchProductApi = async () => {
             try {
                 const response = await BrandApi.getAll();
-                setCategories(response);
+                setBrand(response);
                 // console.log("Fetch category successfully: ", response);
             } catch (error) {
                 console.log("Failed to fetch category list: ", error);
@@ -29,13 +29,16 @@ const BrandFilter = ({onChange}) => {
     return (
         <>
             <div>
-                <h1 className='text-xl mt-2 p-2'>theo danh mục</h1>
-                <div>
-                    <FormGroup>
-                        {categories.map((e) => (
-                            <FormControlLabel key={e.brandId} onChange={()=>handleClick(e)} control={<Checkbox color='success' />} label={e.brandName} />
+            <h1 className='text-2xl mt-2 py-2'>Theo thương hiệu</h1>
+                <div className='flex flex-col text-xl pl-1'>                  
+                        {brands.map((e) => (
+                            <span className='cursor-pointer my-1 py-1' key={e.brandId} onClick={()=>handleClick(e)}>{e.brandName}</span>
                         ))}
-                    </FormGroup>
+                         {/* <FormGroup>
+                        {brands.map((e) => (
+                            <FormControlLabel key={e.categoryId} onChange={()=>handleClick(e)} control={<Checkbox color='success' />} label={e.categoryName} />
+                        ))}
+                    </FormGroup> */}
                 </div>
             </div>
         </>
